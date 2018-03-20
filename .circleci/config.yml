@@ -6,11 +6,14 @@ jobs:
     steps:
       - checkout
 
+machine:
+  pre:
+    - gem install bundler
+    - npm install -g appium
+    - sudo apt install maven -y
+
 test:
     pre:
-        - gem install bundler
-        - npm install -g appium
-        - sudo apt install maven -y
         - emulator -avd circleci-android23 -no-audio -no-window:
             background: true
             parallel: true
