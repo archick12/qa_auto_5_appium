@@ -15,6 +15,7 @@ dependencies:
   override:
     - gem install bundler
     - npm install -g appium
+    - sudo apt install maven
 
 test:
     pre:
