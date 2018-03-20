@@ -13,7 +13,10 @@ jobs:
             command: sudo apt-get update
       - run:
             name: Install Node
-            command: sudo apt-get install -y nodejs | sudo npm install -g appium
+            command: sudo curl -sL https://deb.nodesource.com/setup_7.x | bash | apt-get install -y nodejs
+      - run:
+            name: Install Appium
+            command: sudo npm install -g appium
       - run:
             name: Install Maven
             command: sudo apt install maven -y
