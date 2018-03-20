@@ -5,7 +5,8 @@ jobs:
      - image: circleci/android:api-25-alpha
     steps:
       - checkout
-      - run: /tools/bin/sdkmanager --list
+      - run: tools/bin/sdkmanager --list
+      - run: tools/bin/avdmanager create avd --force --name testAVD --abi google_apis/x86_64 --package 'system-images;android-23;google_apis;x86_64'
       - run: gem install bundler
       - run: sudo apt-get update
       - run: sudo curl -sL https://deb.nodesource.com/setup_7.x | sudo bash
