@@ -9,7 +9,7 @@ jobs:
             name: Install dependencies
             command: gem install bundler
       - run:
-            name: Update Ubuntu
+            name: Update Ubuntu 2
             command: sudo apt-get update
       - run:
             name: Install Appium
