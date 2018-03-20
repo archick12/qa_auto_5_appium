@@ -23,3 +23,5 @@ test:
             parallel: true
         - circle-android wait-for-boot
         - run: mvn clean install
+    override:
+        - mvn clean test
