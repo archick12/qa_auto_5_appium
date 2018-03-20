@@ -5,12 +5,14 @@ jobs:
      - image: circleci/android:api-25-alpha
     steps:
       - checkout
+      - run: emulator -list-avds
       - run: gem install bundler
       - run: sudo apt-get update
       - run: sudo curl -sL https://deb.nodesource.com/setup_7.x | sudo bash
       - run: sudo apt-get install -y nodejs
       - run: sudo npm install -g appium
       - run: sudo apt install -y maven
+      - run: emulator -list-avds
       - run: emulator -avd circleci-android23 -no-audio -no-window
       - run: sudo appium -a 127.0.0.1 -p 4723
       - run: mvn clean install
