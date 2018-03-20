@@ -5,15 +5,15 @@ jobs:
      - image: circleci/android:api-25-alpha
     steps:
       - checkout
-       - run:
-                name: Install dependencies
-                command: gem install bundler \
+      - run:
+            name: Install dependencies
+            command: | gem install bundler \
                          npm install -g appium \
                          sudo apt install maven -y
 
-        - run:
-                name: Start emulator
-                command: emulator -avd circleci-android23 -no-audio -no-window
-        - run:
-                name: Run test
-                command: mvn clean install
+      - run:
+            name: Start emulator
+            command: emulator -avd circleci-android23 -no-audio -no-window
+      - run:
+            name: Run test
+            command: mvn clean install
