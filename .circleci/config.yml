@@ -8,6 +8,9 @@ jobs:
       - run:
             name: Install dependencies
             command: gem install bundler
+        - run:
+            name: Update Ubuntu
+            command: sudo apt-get update
       - run:
             name: Install Appium
             command: sudo apt install npm -y
