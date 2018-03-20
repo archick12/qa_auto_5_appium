@@ -10,6 +10,9 @@ jobs:
             command: gem install bundler
       - run:
             name: Install Appium
+            command: sudo apt install npm -y
+      - run:
+            name: Install Appium
             command: npm install -g appium
       - run:
             name: Install Maven
