@@ -7,10 +7,13 @@ jobs:
       - checkout
       - run:
             name: Install dependencies
-            command: | gem install bundler \
-                         npm install -g appium \
-                         sudo apt install maven -y
-
+            command: gem install bundler
+      - run:
+            name: Install Appium
+            command: npm install -g appium
+      - run:
+            name: Install Maven
+            command: sudo apt install maven -y
       - run:
             name: Start emulator
             command: emulator -avd circleci-android23 -no-audio -no-window
