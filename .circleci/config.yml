@@ -9,7 +9,6 @@ jobs:
      - image: circleci/android:api-25-alpha
     steps:
       - checkout
-      - run: mvn clean install
 
 dependencies:
   override:
@@ -23,3 +22,4 @@ test:
             background: true
             parallel: true
         - circle-android wait-for-boot
+        - run: mvn clean install
