@@ -1,7 +1,3 @@
-# Java Maven CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-java/ for more details
-#
 version: 2
 jobs:
   build:
@@ -9,12 +5,12 @@ jobs:
      - image: circleci/android:api-25-alpha
     steps:
       - checkout
-      - gem install bundler
-      - npm install -g appium
-      - sudo apt install maven -y
 
 test:
     pre:
+        - gem install bundler
+        - npm install -g appium
+        - sudo apt install maven -y
         - emulator -avd circleci-android23 -no-audio -no-window:
             background: true
             parallel: true
