@@ -13,7 +13,7 @@ jobs:
             command: sudo apt-get update
       - run:
             name: Install Appium
-            command: sudo apt install npm -y
+            command: sudo apt-get install npm -y
       - run:
             name: Install Appium
             command: npm install -g appium
