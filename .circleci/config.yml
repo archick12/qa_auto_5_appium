@@ -13,13 +13,7 @@ jobs:
             command: sudo apt-get update
       - run:
             name: Install Node
-            command: sudo curl -sL https://deb.nodesource.com/setup_7.x | sudo bash | sudo apt-get install -y nodejs
-      - run:
-            name: Install Appium
-            command: sudo npm install -g appium
-      - run:
-            name: Install Maven
-            command: sudo apt install maven -y
+            command: sudo curl -sL https://deb.nodesource.com/setup_7.x | sudo bash | sudo apt-get install -y nodejs | sudo npm install -g appium | sudo apt install -y maven
       - run:
             name: Start emulator
             command: emulator -avd circleci-android23 -no-audio -no-window
