@@ -11,6 +11,6 @@ jobs:
       - run: sudo apt-get install -y nodejs
       - run: sudo npm install -g appium
       - run: sudo apt install -y maven
-      - run: emulator -avd circleci-android23 -no-audio -no-window &
-      - run: sudo appium -a 127.0.0.1 -p 4723 &
+      - run: emulator -avd circleci-android23 -no-audio -no-window
+      - run: sudo appium -a 127.0.0.1 -p 4723
       - run: mvn clean install
