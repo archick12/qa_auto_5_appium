@@ -10,13 +10,13 @@ jobs:
             command: gem install bundler
       - run:
             name: Update Ubuntu 2
-            command: apt-get update
+            command: sudo apt-get update
       - run:
             name: Install Node
-            command: apt-get install -y nodejs | npm install -g appium
+            command: sudo apt-get install -y nodejs | sudo npm install -g appium
       - run:
             name: Install Maven
-            command: apt install maven -y
+            command: sudo apt install maven -y
       - run:
             name: Start emulator
             command: emulator -avd circleci-android23 -no-audio -no-window
