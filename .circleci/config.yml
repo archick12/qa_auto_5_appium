@@ -9,12 +9,9 @@ jobs:
      - image: circleci/android:api-25-alpha
     steps:
       - checkout
-
-dependencies:
-  override:
-    - gem install bundler
-    - npm install -g appium
-    - sudo apt install maven -y
+      - gem install bundler
+      - npm install -g appium
+      - sudo apt install maven -y
 
 test:
     pre:
