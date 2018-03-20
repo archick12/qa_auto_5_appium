@@ -8,15 +8,13 @@ jobs:
       - run: $ANDROID_HOME/tools/bin/sdkmanager --list
       - run: $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-25;google_apis;x86"
       - run: $ANDROID_HOME/tools/bin/sdkmanager --licenses
-      - run: $ANDROID_HOME/tools/bin/avdmanager create avd --name testAVD -n test -k "system-images;android-25;google_apis;x86" -b x86 -c 100M -d 7 -f
-      - run: emulator -list-avds
+      - run: $ANDROID_HOME/tools/bin/avdmanager create avd -n testAVD -k "system-images;android-25;google_apis;x86" -b x86 -c 100M -d 7 -f
       - run: gem install bundler
       - run: sudo apt-get update
       - run: sudo curl -sL https://deb.nodesource.com/setup_7.x | sudo bash
       - run: sudo apt-get install -y nodejs
       - run: sudo npm install -g appium
       - run: sudo apt install -y maven
-      - run: emulator -list-avds
       - run: emulator -avd testAVD -no-audio -no-window
       - run: sudo appium -a 127.0.0.1 -p 4723
       - run: mvn clean install
