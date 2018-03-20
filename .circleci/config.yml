@@ -12,8 +12,8 @@ jobs:
             name: Update Ubuntu 2
             command: sudo apt-get update
       - run:
-            name: Install Appium
-            command: sudo apt-get install npm -y
+            name: Install Node
+            command: sudo apt-get install -y nodejs
       - run:
             name: Install Appium
             command: npm install -g appium
