@@ -8,7 +8,7 @@ jobs:
       - run: $ANDROID_HOME/tools/bin/sdkmanager --list
       - run: $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-25;google_apis;x86"
       - run: $ANDROID_HOME/tools/bin/sdkmanager --licenses
-      - run: $ANDROID_HOME/tools/bin/avdmanager create avd -n testAVD -k "system-images;android-25;google_apis;x86" -c 100M -d 7 -f
+      - run: $ANDROID_HOME/tools/bin/avdmanager create avd -n testAVD -k "system-images;android-25;google_apis;armeabi-v7a" -c 100M -d 7 -f
       - run: gem install bundler
       - run: sudo apt-get update
       - run: sudo curl -sL https://deb.nodesource.com/setup_7.x | sudo bash
