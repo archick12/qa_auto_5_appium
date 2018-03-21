@@ -15,6 +15,7 @@ jobs:
       - run: sudo apt-get install -y nodejs
       - run: sudo npm install -g appium
       - run: sudo apt install -y maven
+      - run: sdkmanager --update
       - run: emulator -avd testAVD -no-audio -no-window
       - run: sudo appium -a 127.0.0.1 -p 4723
       - run: mvn clean install
