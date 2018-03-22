@@ -1,4 +1,6 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -22,6 +24,7 @@ public class AppiumTest extends AndroidSetup {
   public void showTest() {
 
     String app_package_name = "com.splendapps.splendo:id/";
+    WebDriverWait wait = new WebDriverWait(driver, 30);
 
     // Home Screen
     By addTaskButton = By.id(app_package_name + "imgFirstTask");
@@ -34,31 +37,41 @@ public class AppiumTest extends AndroidSetup {
     By taskName = By.id(app_package_name + "task_name");
     By taskCheckBox = By.id(app_package_name + "checkDone");
     By toolBar = By.id(app_package_name + "spinnerToolbar");
-    By finishedMenuItem = By.id("Finished");
+    By finishedMenuItem = By.xpath("//android.widget.TextView[@text='Finished']");
+//    By finishedMenuItem = By.name("Finished");
+
+    By quickTask = By.id("com.splendapps.splendo:id/etQuickTask");
+    By doneButtonForQuickTask = By.id("com.splendapps.splendo:id/ivAddQuickTask");
+    By allListsMenuItem = By.xpath("//android.widget.TextView[@text='All Lists']");
 
     // Add new TODO task
     driver.findElement(addTaskButton).click();
     driver.findElement(taskInput).sendKeys("test task");
     driver.findElement(dueDate).click();
     driver.findElement(doneButton).click();
-    try {
-      Thread.sleep(3000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
+
+    wait.until(ExpectedConditions.presenceOfElementLocated(saveTask));
+
     driver.findElement(saveTask).click();
     assert driver.findElement(taskName).isDisplayed();
 
     // Complete task
     driver.findElement(taskCheckBox).click();
-    try {
-      Thread.sleep(3000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
+
+    wait.until(ExpectedConditions.presenceOfElementLocated(toolBar));
 
     driver.findElement(toolBar).click();
     driver.findElement(finishedMenuItem).click();
-    // assert driver.findElement(taskName).isDisplayed();
+    assert driver.findElement(taskName).isDisplayed();
+
+    driver.findElement(toolBar).click();
+    driver.findElement(allListsMenuItem).click();
+    driver.findElement(quickTask).click();
+    driver.findElement(quickTask).sendKeys("test task");
+    driver.findElement(doneButtonForQuickTask).click();
+    assert driver.findElement(taskName).isDisplayed();
+
   }
+
+
 }
