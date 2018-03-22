@@ -30,33 +30,46 @@ public class AppiumTest extends AndroidSetup {
     By addTaskButton = By.id(app_package_name + "imgFirstTask");
     By taskInput = By.id(app_package_name + "edtTaskName");
     By dueDate = By.id(app_package_name + "edtDueD");
+    By dueTime = By.id("com.splendapps.splendo:id/edtDueT");
     By saveTask = By.id(app_package_name + "action_save_task");
     By doneButton = By.id("android:id/button1");
+    By repeatButton = By.id("com.splendapps.splendo:id/spinnerRepeat");
+    By repeatButtonOnceAWeek = By.xpath("//android.widget.TextView[@text='Once a Week']");
+    By addToListButton = By.id("com.splendapps.splendo:id/spinnerLists");
+    By addToListButtonPersonal = By.xpath("//android.widget.TextView[@text='Personal']");
+    By popUpReapeatTaskNo = By.id("android:id/button2");
 
     // Task List Screen
     By taskName = By.id(app_package_name + "task_name");
     By taskCheckBox = By.id(app_package_name + "checkDone");
     By toolBar = By.id(app_package_name + "spinnerToolbar");
     By finishedMenuItem = By.xpath("//android.widget.TextView[@text='Finished']");
-//    By finishedMenuItem = By.name("Finished");
 
     By quickTask = By.id("com.splendapps.splendo:id/etQuickTask");
     By doneButtonForQuickTask = By.id("com.splendapps.splendo:id/ivAddQuickTask");
     By allListsMenuItem = By.xpath("//android.widget.TextView[@text='All Lists']");
+    By listMain = By.id("com.splendapps.splendo:id/listMain");
 
     // Add new TODO task
     driver.findElement(addTaskButton).click();
     driver.findElement(taskInput).sendKeys("test task");
     driver.findElement(dueDate).click();
     driver.findElement(doneButton).click();
-
-    wait.until(ExpectedConditions.presenceOfElementLocated(saveTask));
-
+    driver.findElement(dueTime).click();
+    driver.findElement(doneButton).click();
+    driver.findElement(repeatButton).click();
+    driver.findElement(repeatButtonOnceAWeek).click();
+    driver.findElement(addToListButton).click();
+    driver.findElement(addToListButtonPersonal).click();
     driver.findElement(saveTask).click();
+
+    wait.until(ExpectedConditions.presenceOfElementLocated(taskName));
+
     assert driver.findElement(taskName).isDisplayed();
 
     // Complete task
     driver.findElement(taskCheckBox).click();
+    driver.findElement(popUpReapeatTaskNo).click();
 
     wait.until(ExpectedConditions.presenceOfElementLocated(toolBar));
 
@@ -71,7 +84,8 @@ public class AppiumTest extends AndroidSetup {
     driver.findElement(doneButtonForQuickTask).click();
     assert driver.findElement(taskName).isDisplayed();
 
+    driver.findElement(taskCheckBox).click();
+    assert driver.findElement(listMain).isDisplayed();
   }
-
 
 }
