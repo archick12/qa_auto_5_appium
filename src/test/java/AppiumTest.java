@@ -24,6 +24,7 @@ public class AppiumTest extends AndroidSetup {
   public void showTest() {
 
     String app_package_name = "com.splendapps.splendo:id/";
+    WebDriverWait wait = new WebDriverWait(driver, 30);
 
     // Home Screen
     By addTaskButton = By.id(app_package_name + "imgFirstTask");
@@ -49,27 +50,19 @@ public class AppiumTest extends AndroidSetup {
     driver.findElement(dueDate).click();
     driver.findElement(doneButton).click();
 
-    try {
-      Thread.sleep(3000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
+    wait.until(ExpectedConditions.presenceOfElementLocated(saveTask));
 
     driver.findElement(saveTask).click();
     assert driver.findElement(taskName).isDisplayed();
 
     // Complete task
     driver.findElement(taskCheckBox).click();
-    try {
-      Thread.sleep(3000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
+
+    wait.until(ExpectedConditions.presenceOfElementLocated(toolBar));
 
     driver.findElement(toolBar).click();
     driver.findElement(finishedMenuItem).click();
     assert driver.findElement(taskName).isDisplayed();
-
 
     driver.findElement(toolBar).click();
     driver.findElement(allListsMenuItem).click();
