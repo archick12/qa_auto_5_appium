@@ -8,26 +8,10 @@ import org.testng.annotations.Test;
 
 
 public class AppiumTest extends AndroidSetup {
-
-
-  @BeforeClass
-  public void setUp() throws Exception {
-    prepareAndroidForAppium();
-  }
-
-  @AfterClass
-  public void tearDown() throws Exception {
-    driver.quit();
-  }
-
-  @Test
-  public void showTest() {
-
     String app_package_name = "com.splendapps.splendo:id/";
-    WebDriverWait wait = new WebDriverWait(driver, 30);
-
     // Home Screen
-    By addTaskButton = By.id(app_package_name + "imgFirstTask");
+    By addFirstTaskButton = By.id(app_package_name + "imgFirstTask");
+    By addNewTaskButton = By.id(app_package_name + "ivFAB_AddTask");
     By taskInput = By.id(app_package_name + "edtTaskName");
     By dueDate = By.id(app_package_name + "edtDueD");
     By dueTime = By.id("com.splendapps.splendo:id/edtDueT");
@@ -50,101 +34,108 @@ public class AppiumTest extends AndroidSetup {
     By allListsMenuItem = By.xpath("//android.widget.TextView[@text='All Lists']");
     By listMain = By.id("com.splendapps.splendo:id/listMain");
 
-      //Add in Batch Mode
-      By moreOptions = By.xpath("//android.widget.ImageView[@content-desc=\"More options\"]");
-      By addInBatchMode = By.xpath("//android.widget.TextView[@text='Add in Batch Mode']");
-      By whatIsToBeDone = By.id("com.splendapps.splendo:id/edtTaskName");
+    //Add in Batch Mode
+    By moreOptions = By.xpath("//android.widget.ImageView[@content-desc=\"More options\"]");
+    By addInBatchMode = By.xpath("//android.widget.TextView[@text='Add in Batch Mode']");
+    By whatIsToBeDone = By.id("com.splendapps.splendo:id/edtTaskName");
 
-    // Add new TODO task
-    driver.findElement(addTaskButton).click();
-    driver.findElement(taskInput).sendKeys("test task");
-    driver.findElement(dueDate).click();
-    driver.findElement(doneButton).click();
-    driver.findElement(dueTime).click();
-    driver.findElement(doneButton).click();
-    driver.findElement(repeatButton).click();
-    driver.findElement(repeatButtonOnceAWeek).click();
-    driver.findElement(addToListButton).click();
-    driver.findElement(addToListButtonPersonal).click();
-    driver.findElement(saveTask).click();
+    //PersonalList
+    By PersonalMenuItem = By.xpath("//android.widget.TextView[@text='Personal']");
+    By taskInputPersonal = By.id(app_package_name + "edtTaskName");
 
-    wait.until(ExpectedConditions.presenceOfElementLocated(taskName));
+    @BeforeClass
+    public void setUp() throws Exception {
+        prepareAndroidForAppium();
+    }
 
-    assert driver.findElement(taskName).isDisplayed();
+    @AfterClass
+    public void tearDown() throws Exception {
+        driver.quit();
+    }
+
+    @Test(priority = 1)
+    public void showTest() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElement(addFirstTaskButton).click();
+        driver.findElement(taskInput).sendKeys("test task");
+        driver.findElement(dueDate).click();
+        driver.findElement(doneButton).click();
+        driver.findElement(dueTime).click();
+        driver.findElement(doneButton).click();
+        driver.findElement(repeatButton).click();
+        driver.findElement(repeatButtonOnceAWeek).click();
+        driver.findElement(addToListButton).click();
+        driver.findElement(addToListButtonPersonal).click();
+        driver.findElement(saveTask).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(taskName));
+
+        assert driver.findElement(taskName).isDisplayed();
+    }
 
     // Complete task
-    driver.findElement(taskCheckBox).click();
-    driver.findElement(popUpReapeatTaskNo).click();
+    @Test(priority = 2)
+    public void completeTask() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElement(taskCheckBox).click();
+        driver.findElement(popUpReapeatTaskNo).click();
 
-    wait.until(ExpectedConditions.presenceOfElementLocated(toolBar));
+        wait.until(ExpectedConditions.presenceOfElementLocated(toolBar));
 
-    driver.findElement(toolBar).click();
-    driver.findElement(finishedMenuItem).click();
-    assert driver.findElement(taskName).isDisplayed();
+        driver.findElement(toolBar).click();
+        driver.findElement(finishedMenuItem).click();
+        assert driver.findElement(taskName).isDisplayed();
+    }
 
-    driver.findElement(toolBar).click();
-    driver.findElement(allListsMenuItem).click();
-    driver.findElement(quickTask).click();
-    driver.findElement(quickTask).sendKeys("test task");
-    driver.findElement(doneButtonForQuickTask).click();
-    assert driver.findElement(taskName).isDisplayed();
+    @Test(priority = 3)
+    public void addQuickTask() {
+        driver.findElement(toolBar).click();
+        driver.findElement(allListsMenuItem).click();
+        driver.findElement(quickTask).click();
+        driver.findElement(quickTask).sendKeys("test task");
+        driver.findElement(doneButtonForQuickTask).click();
+        assert driver.findElement(taskName).isDisplayed();
+    }
 
-      //Add in batch mode
-    driver.findElement(moreOptions).click();
-    driver.findElement(addInBatchMode).click();
-    driver.findElement(whatIsToBeDone).sendKeys("test task done");
-    driver.findElement(dueDate).click();
-    driver.findElement(doneButton).click();
+    @Test(priority = 4)
+    public void addInBatchMode() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElement(moreOptions).click();
+        driver.findElement(addInBatchMode).click();
+        driver.findElement(whatIsToBeDone).sendKeys("test task done");
+        driver.findElement(dueDate).click();
+        driver.findElement(doneButton).click();
 
-    wait.until(ExpectedConditions.presenceOfElementLocated(saveTask));
+        wait.until(ExpectedConditions.presenceOfElementLocated(saveTask));
 
-    driver.findElement(saveTask).click();
-    assert driver.findElement(taskName).isDisplayed();
+        driver.findElement(saveTask).click();
+        assert driver.findElement(taskName).isDisplayed();
 
-    driver.findElement(taskCheckBox).click();
-    assert driver.findElement(listMain).isDisplayed();
-  }
+        driver.findElement(taskCheckBox).click();
+        assert driver.findElement(listMain).isDisplayed();
+    }
 
-  @Test
-  public void addTaskToPersonalListTest() throws InterruptedException {
+    @Test(priority = 5)
+    public void addTaskToPersonalListTest() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElement(allListsMenuItem).click();
+        driver.findElement(PersonalMenuItem).click();
+        driver.findElement(addNewTaskButton).click();
+        driver.findElement(taskInputPersonal).sendKeys("Do massage");
+        driver.findElement(dueDate).click();
+        driver.findElement(doneButton).click();
 
-    String app_package_name = "com.splendapps.splendo:id/";
-    WebDriverWait wait = new WebDriverWait(driver, 30);
-
-    By allListsMenuItem = By.xpath("//android.widget.TextView[@text='All Lists']");
-    By PersonalMenuItem = By.xpath("//android.widget.TextView[@text='Personal']");
-    By addTaskButton = By.id(app_package_name + "imgFirstTask");
-    By taskInputPersonal = By.id(app_package_name + "edtTaskName");
-    By dueDate = By.id(app_package_name + "edtDueD");
-    By doneButton = By.id("android:id/button1");
-    By saveTask = By.id(app_package_name + "action_save_task");
-    By taskName = By.id(app_package_name + "task_name");
-//    By quickTask = By.id(app_package_name + "etQuickTask");
-//    By quickTaskAddButton = By.id(app_package_name + "ivAddQuickTask");
-//    By secondTaskName = By.xpath("android.widget.TextView[@text = Second Task]");
-    By taskCheckBox = By.id(app_package_name + "checkDone");
-    By toolBar = By.id(app_package_name + "spinnerToolbar");
-    By finishedMenuItem = By.xpath("//android.widget.TextView[@text='Finished']");
-
-
-    driver.findElement(allListsMenuItem).click();
-    driver.findElement(PersonalMenuItem).click();
-    driver.findElement(addTaskButton).click();
-    driver.findElement(taskInputPersonal).sendKeys("Do massage");
-    driver.findElement(dueDate).click();
-    driver.findElement(doneButton).click();
-
-    Thread.sleep(5000);
+        Thread.sleep(5000);
 //  wait.until(ExpectedConditions.presenceOfElementLocated(doneButton));
-    driver.findElement(saveTask).click();
-    assert driver.findElement(taskName).isDisplayed();
+        driver.findElement(saveTask).click();
+        assert driver.findElement(taskName).isDisplayed();
 
-    driver.findElement(taskCheckBox).click();
+        driver.findElement(taskCheckBox).click();
 
-    wait.until(ExpectedConditions.presenceOfElementLocated(toolBar));
+        wait.until(ExpectedConditions.presenceOfElementLocated(toolBar));
 
-    driver.findElement(toolBar).click();
-    driver.findElement(finishedMenuItem).click();
-    assert driver.findElement(taskName).isDisplayed();
-  }
+        driver.findElement(toolBar).click();
+        driver.findElement(finishedMenuItem).click();
+        assert driver.findElement(taskName).isDisplayed();
+    }
 }
