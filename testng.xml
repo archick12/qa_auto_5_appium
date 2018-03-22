@@ -4,7 +4,7 @@
     <test name="SplenDo HTTP tests">
 
         <classes>
-            <class name="AppiumTest"/>
+            <class name="splendo.AppiumTest"/>
         </classes>
     </test>
 
