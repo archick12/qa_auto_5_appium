@@ -105,5 +105,46 @@ public class AppiumTest extends AndroidSetup {
     assert driver.findElement(listMain).isDisplayed();
   }
 
+  @Test
+  public void addTaskToPersonalListTest() throws InterruptedException {
 
+    String app_package_name = "com.splendapps.splendo:id/";
+    WebDriverWait wait = new WebDriverWait(driver, 30);
+
+    By allListsMenuItem = By.xpath("//android.widget.TextView[@text='All Lists']");
+    By PersonalMenuItem = By.xpath("//android.widget.TextView[@text='Personal']");
+    By addTaskButton = By.id(app_package_name + "imgFirstTask");
+    By taskInputPersonal = By.id(app_package_name + "edtTaskName");
+    By dueDate = By.id(app_package_name + "edtDueD");
+    By doneButton = By.id("android:id/button1");
+    By saveTask = By.id(app_package_name + "action_save_task");
+    By taskName = By.id(app_package_name + "task_name");
+//    By quickTask = By.id(app_package_name + "etQuickTask");
+//    By quickTaskAddButton = By.id(app_package_name + "ivAddQuickTask");
+//    By secondTaskName = By.xpath("android.widget.TextView[@text = Second Task]");
+    By taskCheckBox = By.id(app_package_name + "checkDone");
+    By toolBar = By.id(app_package_name + "spinnerToolbar");
+    By finishedMenuItem = By.xpath("//android.widget.TextView[@text='Finished']");
+
+
+    driver.findElement(allListsMenuItem).click();
+    driver.findElement(PersonalMenuItem).click();
+    driver.findElement(addTaskButton).click();
+    driver.findElement(taskInputPersonal).sendKeys("Do massage");
+    driver.findElement(dueDate).click();
+    driver.findElement(doneButton).click();
+
+    Thread.sleep(5000);
+//  wait.until(ExpectedConditions.presenceOfElementLocated(doneButton));
+    driver.findElement(saveTask).click();
+    assert driver.findElement(taskName).isDisplayed();
+
+    driver.findElement(taskCheckBox).click();
+
+    wait.until(ExpectedConditions.presenceOfElementLocated(toolBar));
+
+    driver.findElement(toolBar).click();
+    driver.findElement(finishedMenuItem).click();
+    assert driver.findElement(taskName).isDisplayed();
+  }
 }
