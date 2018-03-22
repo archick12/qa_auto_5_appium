@@ -48,6 +48,7 @@ public class AppiumTest extends AndroidSetup {
     By quickTask = By.id("com.splendapps.splendo:id/etQuickTask");
     By doneButtonForQuickTask = By.id("com.splendapps.splendo:id/ivAddQuickTask");
     By allListsMenuItem = By.xpath("//android.widget.TextView[@text='All Lists']");
+    By listMain = By.id("com.splendapps.splendo:id/listMain");
 
     // Add new TODO task
     driver.findElement(addTaskButton).click();
@@ -83,6 +84,8 @@ public class AppiumTest extends AndroidSetup {
     driver.findElement(doneButtonForQuickTask).click();
     assert driver.findElement(taskName).isDisplayed();
 
+    driver.findElement(taskCheckBox).click();
+    assert driver.findElement(listMain).isDisplayed();
   }
 
 }
