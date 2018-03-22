@@ -50,6 +50,11 @@ public class AppiumTest extends AndroidSetup {
     By allListsMenuItem = By.xpath("//android.widget.TextView[@text='All Lists']");
     By listMain = By.id("com.splendapps.splendo:id/listMain");
 
+      //Add in Batch Mode
+      By moreOptions = By.xpath("//android.widget.ImageView[@content-desc=\"More options\"]");
+      By addInBatchMode = By.xpath("//android.widget.TextView[@text='Add in Batch Mode']");
+      By whatIsToBeDone = By.id("com.splendapps.splendo:id/edtTaskName");
+
     // Add new TODO task
     driver.findElement(addTaskButton).click();
     driver.findElement(taskInput).sendKeys("test task");
@@ -84,8 +89,21 @@ public class AppiumTest extends AndroidSetup {
     driver.findElement(doneButtonForQuickTask).click();
     assert driver.findElement(taskName).isDisplayed();
 
+      //Add in batch mode
+    driver.findElement(moreOptions).click();
+    driver.findElement(addInBatchMode).click();
+    driver.findElement(whatIsToBeDone).sendKeys("test task done");
+    driver.findElement(dueDate).click();
+    driver.findElement(doneButton).click();
+
+    wait.until(ExpectedConditions.presenceOfElementLocated(saveTask));
+
+    driver.findElement(saveTask).click();
+    assert driver.findElement(taskName).isDisplayed();
+
     driver.findElement(taskCheckBox).click();
     assert driver.findElement(listMain).isDisplayed();
   }
+
 
 }
