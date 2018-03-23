@@ -1,0 +1,8 @@
+#Copy paste this content to Appium Inspector
+
+{
+ "platformName": "Android",
+ "deviceName": "emulator-5554",
+ "appPackage": "com.todoist",
+ "appActivity": "com.todoist.activity.HomeActivity"
+}
