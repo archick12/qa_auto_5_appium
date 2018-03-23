@@ -7,8 +7,13 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.ResourceBundle;
+
 
 public class AppiumTest extends AndroidSetup {
+
+    ResourceBundle locators = ResourceBundle.getBundle("en_US.properties");
+
     String app_package_name = "com.splendapps.splendo:id/";
     String TextView = "//android.widget.TextView";
     // Home Screen
@@ -29,7 +34,7 @@ public class AppiumTest extends AndroidSetup {
     By taskName = By.id(app_package_name + "task_name");
     By taskCheckBox = By.id(app_package_name + "checkDone");
     By toolBar = By.id(app_package_name + "spinnerToolbar");
-    By finishedMenuItem = By.xpath(TextView + "[@text='Finished']");
+    By finishedMenuItem = By.xpath(locators.getString("finishedMenuItem"));
 
     By quickTask = By.id(app_package_name + "etQuickTask");
     By doneButtonForQuickTask = By.id(app_package_name + "ivAddQuickTask");
