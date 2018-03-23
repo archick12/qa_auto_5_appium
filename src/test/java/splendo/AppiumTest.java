@@ -7,12 +7,16 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 
 public class AppiumTest extends AndroidSetup {
 
-    ResourceBundle locators = ResourceBundle.getBundle("en_US.properties");
+
+    Locale currentLocale = new Locale("en", "US");
+
+    ResourceBundle locators = ResourceBundle.getBundle("en_US", currentLocale);
 
     String app_package_name = "com.splendapps.splendo:id/";
     String TextView = "//android.widget.TextView";
@@ -35,7 +39,6 @@ public class AppiumTest extends AndroidSetup {
     By taskCheckBox = By.id(app_package_name + "checkDone");
     By toolBar = By.id(app_package_name + "spinnerToolbar");
     By finishedMenuItem = By.xpath(TextView + locators.getString("finishedMenuItem"));
-
     By quickTask = By.id(app_package_name + "etQuickTask");
     By doneButtonForQuickTask = By.id(app_package_name + "ivAddQuickTask");
     By allListsMenuItem = By.xpath(TextView + "[@text='All Lists']");
