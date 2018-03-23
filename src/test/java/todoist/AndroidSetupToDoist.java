@@ -12,7 +12,7 @@ public class AndroidSetupToDoist {
 
     protected void prepareAndroidForAppium() throws MalformedURLException {
         File appDir = new File("app");
-        File app = new File(appDir, "com.todoist-12.7@APK4Fun.com.apk");
+        File app = new File(appDir, "com.todoist.apk");
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("device", "Android");
