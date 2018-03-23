@@ -34,7 +34,7 @@ public class AppiumTest extends AndroidSetup {
     By taskName = By.id(app_package_name + "task_name");
     By taskCheckBox = By.id(app_package_name + "checkDone");
     By toolBar = By.id(app_package_name + "spinnerToolbar");
-    By finishedMenuItem = By.xpath(locators.getString("finishedMenuItem"));
+    By finishedMenuItem = By.xpath(TextView + locators.getString("finishedMenuItem"));
 
     By quickTask = By.id(app_package_name + "etQuickTask");
     By doneButtonForQuickTask = By.id(app_package_name + "ivAddQuickTask");
