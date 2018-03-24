@@ -14,9 +14,7 @@ public class ToDoistTests  extends AndroidSetupToDoist {
     By continueWithEmailButton = By.id(app_package_name + "btn_continue_with_email");
     By passwordInput = By.id(app_package_name + "log_in_password");
     By loginButton = By.id(app_package_name +  "btn_log_in");
-    By toDoisticon = By.id(app_package_name + "id/empty_title");
-
-
+    By emptyIcon = By.id(app_package_name + "empty_icon");
 
 
     @BeforeClass
@@ -33,7 +31,7 @@ public class ToDoistTests  extends AndroidSetupToDoist {
     public void LoginTest() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         driver.findElement(continueLogin).click();
-
+//TODO replace sleep with wait.until
         Thread.sleep(5000);
 
         driver.findElement(otherButton).click();
@@ -41,5 +39,8 @@ public class ToDoistTests  extends AndroidSetupToDoist {
         driver.findElement(continueWithEmailButton).click();
         driver.findElement(passwordInput).sendKeys("welcome2hillel");
         driver.findElement(loginButton).click();
+//TODO replace sleep with wait.until
+        Thread.sleep(5000);
+        driver.findElement(emptyIcon).isDisplayed();
     }
 }
