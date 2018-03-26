@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 public class ToDoistTests  extends AndroidSetupToDoist {
     String app_package_name = "com.todoist:id/";
     String TextView = "android.widget.TextView";
+
     By continueLogin = By.id(app_package_name + "btn_welcome_continue_with_email");
     By otherButton = By.id("com.google.android.gms:id/cancel");
     By emailInput = By.id(app_package_name + "email_exists_input");
@@ -40,8 +41,8 @@ public class ToDoistTests  extends AndroidSetupToDoist {
         driver.quit();
     }
 
-    @Test
-    public void LoginTest() throws InterruptedException {
+    @Test(priority = 1)
+    public void LoginTest() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         driver.findElement(continueLogin).click();
 
@@ -56,22 +57,25 @@ public class ToDoistTests  extends AndroidSetupToDoist {
         wait.until(ExpectedConditions.presenceOfElementLocated(emptyIcon));
 
         assert driver.findElement(emptyIcon).isDisplayed();
+    }
 
+     @Test(priority = 2)
+      public void NewProject() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElement(projectsDropdown).click();
 
-        @Test
-        public void NewProject() throws InterruptedException {
-            WebDriverWait wait = new WebDriverWait(driver, 30);
-            driver.findElement(projectsDropdown).click();
-            Thread.sleep(5000);
-            driver.findElement(addProject).click();
-            driver.findElement(nameProject).sendKeys("Test project creation");
-            driver.findElement(selectFavorite).click();
-            driver.findElement(createButton).click();
-            wait.until(ExpectedConditions.presenceOfElementLocated(nameProject));
+         wait.until(ExpectedConditions.presenceOfElementLocated(addProject));
+         driver.findElement(addProject).click();
+         driver.findElement(nameProject).sendKeys("Test project creation");
+         driver.findElement(selectFavorite).click();
+         driver.findElement(createButton).click();
 
-            assert driver.findElement(nameProject).isDisplayed();
+         wait.until(ExpectedConditions.presenceOfElementLocated(nameProject));
+
+          assert driver.findElement(nameProject).isDisplayed();
 
 
         }
     }
+
 
