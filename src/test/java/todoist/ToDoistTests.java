@@ -41,6 +41,6 @@ public class ToDoistTests  extends AndroidSetupToDoist {
         driver.findElement(loginButton).click();
 //TODO replace sleep with wait.until
         Thread.sleep(5000);
-        driver.findElement(emptyIcon).isDisplayed();
+        assert driver.findElement(emptyIcon).isDisplayed();
     }
 }
