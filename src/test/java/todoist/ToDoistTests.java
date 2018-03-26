@@ -22,8 +22,7 @@ public class ToDoistTests  extends AndroidSetupToDoist {
     By personalButton = By.xpath(TextView + "[@text='Personal']");
     By addButton = By.id("com.todoist:id/fab");
     By profile = By.id("com.todoist:id/profile_view_avatar");
-    By addProject = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.FrameLayout/android.widget.FrameLayout[2]/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.TextView[1]");
-    //By addProject = By.xpath(TextView + "[@text='Add project']");
+    By addProject = By.id("android:id/text1");
     By nameProject = By.id("com.todoist:id/name");
     By createButton = By.id("com.todoist:id/menu_form_submit");
     By selectFavorite = By.id("com.todoist:id/favorite");
