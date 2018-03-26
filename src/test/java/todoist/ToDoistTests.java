@@ -9,26 +9,35 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class ToDoistTests  extends AndroidSetupToDoist {
+
     String app_package_name = "com.todoist:id/";
-    String TextView = "android.widget.TextView";
+    String TextView = "//android.widget.TextView";
 
     By continueLogin = By.id(app_package_name + "btn_welcome_continue_with_email");
     By otherButton = By.id("com.google.android.gms:id/cancel");
     By emailInput = By.id(app_package_name + "email_exists_input");
     By continueWithEmailButton = By.id(app_package_name + "btn_continue_with_email");
     By passwordInput = By.id(app_package_name + "log_in_password");
-    By loginButton = By.id(app_package_name + "btn_log_in");
-    By emptyIcon = By.id(app_package_name + "empty_icon");
     By projectsDropdown = By.xpath("(//android.widget.ImageView[@content-desc=\"Expand/collapse\"])[1]");
-    By personalButton = By.xpath(TextView + "[@text='Personal']");
-    By addButton = By.id("com.todoist:id/fab");
-    By profile = By.id("com.todoist:id/profile_view_avatar");
-    By addProject = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.FrameLayout/android.widget.FrameLayout[2]/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.TextView[1]");
-    //By addProject = By.xpath(TextView + "[@text='Add project']");
     By nameProject = By.id("com.todoist:id/name");
     By createButton = By.id("com.todoist:id/menu_form_submit");
     By selectFavorite = By.id("com.todoist:id/favorite");
-    By projectName = By.id(app_package_name + "text");
+    By loginButton = By.id(app_package_name +  "btn_log_in");
+    By emptyIcon = By.id(app_package_name + "empty_icon");
+    By addNewTaskButton = By.id(app_package_name + "fab");
+    By taskSummary = By.id("android:id/message");
+    By saveTask = By.id("android:id/button1");
+    By taskName = By.id(app_package_name + "text");
+    By addTaskDate = By.id(app_package_name + "schedule");
+    By selectDate = By.id(app_package_name + "scheduler_tomorrow");
+    By addProject = By.xpath(TextView + "[@text='Add project']");
+    By taskInbox = By.id(app_package_name + "name");
+    By testTaskField = By.id("com.todoist:id/text");
+    By editDropDownMenu = By.xpath("//android.widget.ImageView[@content-desc=\"More options\"])[2]");
+
+    By deleteButtonFromDropDownMenu = By.xpath(TextView + "[@text='Delete']");
+    By deletePopUpConfirmation = By.xpath("//android.widget.Button[@text='Yes']");
+    By noTaskForInbox = By.id("com.todoist:id/empty_icon");
 
 
     @BeforeClass
@@ -61,10 +70,11 @@ public class ToDoistTests  extends AndroidSetupToDoist {
 
      @Test(priority = 2)
       public void NewProject() {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        driver.findElement(projectsDropdown).click();
-
+         WebDriverWait wait = new WebDriverWait(driver, 30);
+         driver.findElement(projectsDropdown).click();
          wait.until(ExpectedConditions.presenceOfElementLocated(addProject));
+         assert driver.findElement(addProject).isDisplayed();
+
          driver.findElement(addProject).click();
          driver.findElement(nameProject).sendKeys("Test project creation");
          driver.findElement(selectFavorite).click();
@@ -72,10 +82,35 @@ public class ToDoistTests  extends AndroidSetupToDoist {
 
          wait.until(ExpectedConditions.presenceOfElementLocated(nameProject));
 
-          assert driver.findElement(nameProject).isDisplayed();
+         assert driver.findElement(nameProject).isDisplayed();
 
 
         }
+
+    @Test(priority = 3)
+    public void NewTask() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElement(addNewTaskButton).click();
+        driver.findElement(taskSummary).sendKeys("test task");
+        driver.findElement(addTaskDate).click();
+        driver.findElement(selectDate).click();
+        driver.findElement(saveTask).click();
+        driver.findElement(taskInbox).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(taskName));
+
+        assert driver.findElement(taskName).isDisplayed();
+
+//        driver.findElement(testTaskField).click();
+//        wait.until(ExpectedConditions.presenceOfElementLocated(editDropDownMenu));
+//        driver.findElement(editDropDownMenu).click();
+//        driver.findElement(deleteButtonFromDropDownMenu).click();
+//        driver.findElement(deletePopUpConfirmation).click();
+//
+//        assert driver.findElement(noTaskForInbox).isDisplayed();
+
     }
+
+}
+
 
 
