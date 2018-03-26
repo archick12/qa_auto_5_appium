@@ -6,6 +6,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class ToDoistTests  extends AndroidSetupToDoist {
     String app_package_name = "com.todoist:id/";
     By continueLogin = By.id(app_package_name + "btn_welcome_continue_with_email");
@@ -15,6 +17,11 @@ public class ToDoistTests  extends AndroidSetupToDoist {
     By passwordInput = By.id(app_package_name + "log_in_password");
     By loginButton = By.id(app_package_name +  "btn_log_in");
     By emptyIcon = By.id(app_package_name + "empty_icon");
+    By searchButton = By.id(app_package_name + "menu_content_search");
+    By searchEditText = By.id(app_package_name + "search_edit_text");
+    By foundItemsLocator = By.xpath("//*[@resource-id='com.todoist:id/global_search_results']" +
+            "/descendant::android.widget.TextView[@resource-id='com.todoist:id/text']");
+
 
 
     @BeforeClass
@@ -42,5 +49,17 @@ public class ToDoistTests  extends AndroidSetupToDoist {
 //TODO replace sleep with wait.until
         Thread.sleep(5000);
         driver.findElement(emptyIcon).isDisplayed();
+    }
+
+    @Test(dependsOnMethods = "LoginTest()")
+    public void SearchTest() throws InterruptedException {
+        driver.findElement(searchButton).click();
+        String searchString = "hello";
+        driver.findElement(searchEditText).sendKeys(searchString);
+        List foundItems = driver.findElements(foundItemsLocator);
+
+        //todo for(item in items)   assert
+
+
     }
 }
