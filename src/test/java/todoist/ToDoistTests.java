@@ -56,13 +56,15 @@ public class ToDoistTests  extends AndroidSetupToDoist {
         wait.until(ExpectedConditions.presenceOfElementLocated(emptyIcon));
 
         assert driver.findElement(emptyIcon).isDisplayed();
+    }
 
 
         @Test
         public void NewProject() throws InterruptedException {
             WebDriverWait wait = new WebDriverWait(driver, 30);
             driver.findElement(projectsDropdown).click();
-            Thread.sleep(5000);
+            wait.until(ExpectedConditions.presenceOfElementLocated(addProject));
+            assert driver.findElement(addProject).isDisplayed();
             driver.findElement(addProject).click();
             driver.findElement(nameProject).sendKeys("Test project creation");
             driver.findElement(selectFavorite).click();
