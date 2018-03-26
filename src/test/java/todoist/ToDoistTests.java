@@ -1,8 +1,7 @@
 package todoist;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
@@ -45,18 +44,19 @@ public class ToDoistTests  extends AndroidSetupToDoist {
     public void LoginTest() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         driver.findElement(continueLogin).click();
-//TODO replace sleep with wait.until
-        Thread.sleep(5000);
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(otherButton));
 
         driver.findElement(otherButton).click();
         driver.findElement(emailInput).sendKeys("hillelqaauto52@gmail.com");
         driver.findElement(continueWithEmailButton).click();
         driver.findElement(passwordInput).sendKeys("welcome2hillel");
         driver.findElement(loginButton).click();
-//TODO replace sleep with wait.until
-        Thread.sleep(5000);
-        //driver.findElement(emptyIcon).isDisplayed();
-    }
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(emptyIcon));
+
+        assert driver.findElement(emptyIcon).isDisplayed();
+
 
         @Test
         public void NewProject() throws InterruptedException {
