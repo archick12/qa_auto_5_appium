@@ -7,7 +7,6 @@ import java.net.MalformedURLException;
 import java.io.File;
 import java.net.URL;
 
-
 public class AndroidSetup {
 
   protected AndroidDriver driver;
@@ -25,5 +24,4 @@ public class AndroidSetup {
 
     driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
   }
-
 }
