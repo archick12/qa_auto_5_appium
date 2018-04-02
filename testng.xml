@@ -1,10 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="HTTP API">
+<suite name="UI">
 
-    <test name="SplenDo HTTP tests">
+    <test name="ToDoist tests">
 
         <classes>
-            <class name="splendo.AppiumTest"/>
+            <class name="todoist.ToDoistTests"/>
         </classes>
     </test>
 
