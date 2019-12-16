@@ -17,8 +17,8 @@ public class AndroidSetup {
     File app = new File(appDir, "splendo.apk");
 
     DesiredCapabilities capabilities = new DesiredCapabilities();
-    capabilities.setCapability("device", "Android");
-    capabilities.setCapability("deviceName", "emulator-5554");
+    capabilities.setCapability("device", "pixel (Google)");
+    capabilities.setCapability("deviceName", "Nexus_S_API_27");
     capabilities.setCapability("appActivity", "com.splendapps.splendo.MainActivity");
     capabilities.setCapability("appPackage", "com.splendapps.splendo");
     capabilities.setCapability("app", app.getAbsolutePath());

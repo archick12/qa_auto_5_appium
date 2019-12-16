@@ -12,7 +12,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>3.4.0</version>
+            <version>3.141.59</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
-            <version>4.1.2</version>
+            <version>6.1.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
